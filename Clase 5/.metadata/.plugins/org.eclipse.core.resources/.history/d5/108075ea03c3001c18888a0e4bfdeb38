@@ -1,0 +1,135 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 4:
+Hacer un programa en donde el usuario ingrese un array de 5 numeros enteros,
+luego generar un menu en donde el usuario pueda elegir entre las siguientes funciones:
+    a)Buscar el MAXIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	b)Buscar el MINIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	c)Calcular el PROMEDIO y mostrarlo
+ 	d)Ingresar un numero y mostrar si se encontro, cuantas veces y las posiciones del array
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int IngresarArrayInt(int* pArrayNumero, int tam);
+int UtnGetNumeroEntero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos);
+int BuscarMaximo(int * pArrayNumero, int tam, int* max);
+int PrintArrayInt(int* pArrayEdades, int limite);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numero[TAM];
+	int opcion;
+	int maximo;
+
+	IngresarArrayInt(numero, TAM);
+
+	do
+	{
+		UtnGetNumeroEntero(&opcion, "1.Buscar el maximo y mostralo\n2.Buscar el minimo y mostrarlo\n3.Calcular promedio y mostrarlo\n4.Ingresar un numero y mostrar si se encontro, cuantas veces y las posiciones del array\n5.Salir\nIngrese opcion: ", "Error en el ingreso de datos..\n", 1, 5, 1);
+		switch(opcion)
+		{
+		case 1:
+			if(BuscarMaximo(numero, TAM, maximo)==0)
+			{
+				printf("a.El numero maximo es %d\n", maximo);
+			}
+			else
+			{
+				printf("Algo salio mal!\n");
+			}
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		}
+
+	}while(opcion!=5);
+
+	return EXIT_SUCCESS;
+}
+
+int IngresarArrayInt(int* pArrayNumero, int tam)
+{
+	int ret=-1;
+	if(pArrayNumero!=NULL && tam>0)
+	{
+		for(int i=0; i<tam;i++)
+		{
+			printf("Ingrese numero: ");
+			scanf("%d", &pArrayNumero[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int UtnGetNumeroEntero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos)
+{
+	int retorno=-1;
+	int bufferInt;
+	if(resultado!=NULL && mensaje != NULL && mensajeError != NULL && minimo<=maximo && reintentos >=0)
+	{
+		do{
+			printf("%s", mensaje);
+			scanf("%d", &bufferInt);
+			if(bufferInt>=minimo && bufferInt<=maximo)
+			{
+				*resultado=bufferInt;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				reintentos--;
+			}
+		}while(reintentos>=0);
+
+	}
+
+	return retorno;
+}
+
+int BuscarMaximo(int * pArrayNumero, int tam, int* max)
+{
+	int ret=-1;
+	int bufferInt;
+	if(pArrayNumero!=NULL && tam>0 && max!=NULL)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			if(i==0||bufferInt>pArrayNumero[i])
+			{
+				bufferInt=pArrayNumero[i];
+			}
+		}
+		ret=0;
+		*max=bufferInt;
+	}
+	return ret;
+}
+
+int PrintArrayInt(int* pArrayEdades, int limite)
+{
+	int ret=-1;
+	if(pArrayEdades!=NULL && limite>0)
+	{
+		for(int i=0;i<limite;i++)
+		{
+			printf("Indice: %d - Valor: %d\n", i, pArrayEdades[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}

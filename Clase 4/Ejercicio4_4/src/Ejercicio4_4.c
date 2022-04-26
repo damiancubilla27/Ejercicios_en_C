@@ -1,0 +1,68 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 4:
+Realizar un programa que permita el ingreso de 10 números enteros. Determinar el promedio de los positivos,
+la cantidad de ceros y del menor de los negativos la suma de los antecesores de ese valor (frenar en cero).
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+
+void CalcularMinMax(int *num, char *mensaje, int tam, int *prom, int *canti, int *nega);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numeros[TAM];
+	int promedio;
+	int cantidadCeros;
+	int mayorNegativos;
+
+	CalcularMinMax(numeros, "ingrese numero: ", TAM, &promedio, &cantidadCeros, &mayorNegativos);
+	printf("a.El promedio de los postivos es: %d\n", promedio);
+	printf("b.Cantidad de ceros es: %d\n", cantidadCeros);
+	printf("c.El mayor numero negativo es: %d\n", mayorNegativos);
+
+	return EXIT_SUCCESS;
+}
+
+void CalcularMinMax(int *num, char *mensaje, int tam, int *prom, int *canti, int *nega)
+{
+	int numeropositivo;
+	int positivosAcu;
+	int positivosConta;
+	int contaCeros;
+	int numeroNega;
+	int promedioMax;
+	numeropositivo=0;
+	positivosAcu=0;
+	positivosConta=0;
+	contaCeros=0;
+	for(int i=0;i<tam;i++)
+	{
+		printf("Ingrese numero: ");
+		scanf("%d", &num[i]);
+		if(num[i]>numeropositivo)
+		{
+			positivosAcu=positivosAcu+num[i];
+			positivosConta++;
+		}
+
+		if(num[i]==0)
+		{
+			contaCeros++;
+		}
+
+		if(num[i]<0 ||num[i]<numeroNega)
+		{
+			numeroNega=num[i];
+		}
+	}
+	promedioMax=positivosAcu/positivosConta;
+	*prom=promedioMax;
+	*canti=contaCeros;
+	*nega=numeroNega;
+}

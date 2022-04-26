@@ -1,0 +1,120 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 6:
+1.Crear una funcion que ingrese array.
+2.Crear una funcion que imprima un array.
+3.Crear una funcion que imprima un array de mayor a menor. Y luego lo imprima.
+4.Crear una funcion que imprima un array de menor a mayor. Y luego lo imprima.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int IngresarArrayInt(int* pArrayNumero, int tam);
+int PrintArrayInt(int* pArrayEdades, int limite);
+int OrdenarArrayIntDeMayorA(int* pArrayEdades, int tam);
+int OrdenarArrayIntDeMenorA(int* pArrayEdades, int tam);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numeros[TAM];
+	IngresarArrayInt(numeros, TAM);
+	PrintArrayInt(numeros, TAM);
+	OrdenarArrayIntDeMayorA(numeros, TAM);
+	PrintArrayInt(numeros, TAM);
+	OrdenarArrayIntDeMenorA(numeros, TAM);
+	PrintArrayInt(numeros, TAM);
+	return EXIT_SUCCESS;
+}
+
+int IngresarArrayInt(int* pArrayNumero, int tam)
+{
+	int ret=-1;
+	if(pArrayNumero!=NULL && tam>0)
+	{
+		for(int i=0; i<tam;i++)
+		{
+			printf("Ingrese numero: ");
+			scanf("%d", &pArrayNumero[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int PrintArrayInt(int* pArrayEdades, int limite)
+{
+	int ret=-1;
+	if(pArrayEdades!=NULL && limite>0)
+	{
+		for(int i=0;i<limite;i++)
+		{
+			printf("Indice: %d - Valor: %d\n", i, pArrayEdades[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int OrdenarArrayIntDeMayorA(int* pArrayEdades, int tam)
+{
+	int ret=-1;
+	int flagSwap;
+	int bufferInt;
+	int nuevoLimite;
+
+	if(pArrayEdades!=NULL && tam>0)
+	{
+		nuevoLimite=tam-1;
+		do
+		{
+			flagSwap=0;
+			for(int i=0;i<nuevoLimite;i++)
+			{
+				if(pArrayEdades[i]<pArrayEdades[i+1])
+				{
+					flagSwap=1;
+					bufferInt=pArrayEdades[i];
+					pArrayEdades[i]=pArrayEdades[i+1];
+					pArrayEdades[i+1]=bufferInt;
+				}
+			}
+			nuevoLimite--;
+		}while(flagSwap==1);
+		ret=0;
+	}
+	return ret;
+}
+
+int OrdenarArrayIntDeMenorA(int* pArrayEdades, int tam)
+{
+	int ret=-1;
+	int flagSwap;
+	int bufferInt;
+	int nuevoLimite;
+
+	if(pArrayEdades!=NULL && tam>0)
+	{
+		nuevoLimite=tam-1;
+		do
+		{
+			flagSwap=0;
+			for(int i=0;i<nuevoLimite;i++)
+			{
+				if(pArrayEdades[i]<pArrayEdades[i+1])
+				{
+					flagSwap=1;
+					bufferInt=pArrayEdades[i];
+					pArrayEdades[i]=pArrayEdades[i+1];
+					pArrayEdades[i+1]=bufferInt;
+				}
+			}
+			nuevoLimite--;
+		}while(flagSwap==1);
+		ret=0;
+	}
+	return ret;
+}

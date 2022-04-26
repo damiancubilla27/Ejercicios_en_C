@@ -1,0 +1,16 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 1:
+Pedir al usuario 5 edades y luego imprimir las edades. Definir un array de 5 posiciones y
+usar la funcion getNumero() para pedir los valores.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+	return EXIT_SUCCESS;
+}

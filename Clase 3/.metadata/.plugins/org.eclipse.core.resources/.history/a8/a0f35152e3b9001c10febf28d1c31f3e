@@ -1,0 +1,61 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 2:
+Lograr hacer una funcion que me permita continuar o no... Devolver 1 o 0-
+Hacer una calculadora.. Operaciones por separado y todas las operaciones juntas, cuantas veces el usuario quiera.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void PedirDatos(int* primerNumero, int* segundoNumero);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numUno;
+	int numDos;
+	int operacion;
+
+	PedirDatos(&numUno, &numDos);
+	printf("\n1.SUMA\n2.RESTA\n3.MULTIPLICACION\n4.DIVISION\n5.TODAS LAS OPERACIONES MATEMATICAS\n6.SALIR\nIngrese alguna opcion: ");
+	scanf("%d", &operacion);
+
+	do{
+		switch(operacion)
+			case 1:
+				printf("ESTA");
+				break;
+			case 2:
+				printf("ESTA");
+				break;
+			case 3:
+				printf("ESTA");
+				break;
+			case 4:
+				printf("ESTA");
+				break;
+			case 5:
+				printf("ESTA");
+				break;
+			case 6:
+				break;
+
+	}while(operacion!=6);
+
+	return EXIT_SUCCESS;
+}
+
+void PedirDatos(int* primerNumero, int* segundoNumero)
+{
+	int num1;
+	int num2;
+
+	printf("Ingrese un numero: ");
+	scanf("%d", &num1);
+	*primerNumero=num1;
+	printf("Ingrese otro numero: ");
+	scanf("%d", &num2);
+	*segundoNumero=num2;
+}

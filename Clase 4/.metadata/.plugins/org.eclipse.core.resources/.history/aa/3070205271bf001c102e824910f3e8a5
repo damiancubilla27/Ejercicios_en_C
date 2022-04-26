@@ -1,0 +1,30 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 2:
+Ingresar 5 números. Determinar cuál es el máximo y el mínimo e indicar en qué orden fue ingresado.
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numeros[TAM];
+
+	for (int i = 0; i < TAM; i++)
+	{
+		printf("Ingresa un numero: ");
+		scanf("%d", &numeros[i]);
+	}
+
+	for (int i = 0; i < TAM; i++)
+	{
+		printf("Numero: %d\n", numeros[i]);
+	}
+
+	return EXIT_SUCCESS;
+}

@@ -1,0 +1,95 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 2:
+Lograr hacer una funcion que me permita continuar o no... Devolver 1 o 0-
+Hacer una calculadora.. Operaciones por separado y todas las operaciones juntas, cuantas veces el usuario quiera.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "operacionesMatematicas.h"
+
+void PedirNumeros(int* primerNumero, int* segundoNumero);
+void MostrarMenu(int* op);
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numUno;
+	int numDos;
+	int operacion;
+	int enteros;
+	int suma;
+	int resta;
+	int multi;
+	float division;
+	int retornoDiv;
+
+	PedirNumeros(&numUno, &numDos);
+	do{
+		MostrarMenu(&operacion);
+		switch(operacion)
+		{
+			case 1:
+				SumarNumeros(numUno, numDos, &enteros);
+				printf("1. La suma de los numeros es: %d\n", enteros);
+				break;
+			case 2:
+				RestarNumeros(numUno, numDos, &enteros);
+				printf("2. La resta de los numeros es: %d\n", enteros);
+				break;
+			case 3:
+				MultiplicarNumeros(numUno, numDos, &enteros);
+				printf("3. La multiplicacion de los numeros es: %d\n", enteros);
+				break;
+			case 4:
+				retornoDiv=DividirNumeros(numUno, numDos, &division);
+				if(retornoDiv==0)
+				{
+					printf("4. No se puede realizar la cuenta!\n");
+				}
+				else
+				{
+					printf("4. La division de los numeros es: %.2f\n", division);
+				}
+
+				break;
+			case 5:
+				SumarNumeros(numUno, numDos, &suma);
+				RestarNumeros(numUno, numDos, &resta);
+				MultiplicarNumeros(numUno, numDos, &multi);
+				DividirNumeros(numUno, numDos, &division);
+				printf("1.Suma: %d\n2.Resta: %d\n3.Multiplicacion: %d\n4.Division: %.2f\n", suma, resta, multi, division);
+				break;
+		}
+		printf("Desea continuar: SI=1 NO=0 : ");
+		scanf("%d", &operacion);
+	}while(operacion!=0);
+
+	return EXIT_SUCCESS;
+}
+
+void PedirNumeros(int* primerNumero, int* segundoNumero)
+{
+	int num1;
+	int num2;
+
+	printf("Ingrese un numero: ");
+	scanf("%d", &num1);
+	*primerNumero=num1;
+	printf("Ingrese otro numero: ");
+	scanf("%d", &num2);
+	*segundoNumero=num2;
+}
+
+void MostrarMenu(int* op)
+{
+	int opcion;
+	printf("\n1.SUMA\n2.RESTA\n3.MULTIPLICACION\n4.DIVISION\n5.TODAS LAS OPERACIONES MATEMATICAS\nIngrese alguna opcion: ");
+	scanf("%d", &opcion);
+	*op=opcion;
+}
+
+

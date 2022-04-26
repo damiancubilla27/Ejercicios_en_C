@@ -1,0 +1,58 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 4:
+Hacer un programa en donde el usuario ingrese un array de 5 numeros enteros,
+luego generar un menu en donde el usuario pueda elegir entre las siguientes funciones:
+    a)Buscar el MAXIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	b)Buscar el MINIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	c)Calcular el PROMEDIO y mostrarlo
+ 	d)Ingresar un numero y mostrar si se encontro, cuantas veces y las posiciones del array
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int IngresarArrayInt(int* pArrayNumero, int tam);
+int PrintArrayInt(int* pArrayEdades, int limite);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numero[TAM];
+
+	IngresarArrayInt(numero, TAM);
+	PrintArrayInt(numero, TAM);
+
+	return EXIT_SUCCESS;
+}
+
+int IngresarArrayInt(int* pArrayNumero, int tam)
+{
+	int ret=-1;
+	if(pArrayNumero!=NULL && tam>0)
+	{
+		for(int i=0; i<tam;i++)
+		{
+			printf("Ingrese numero: ");
+			scanf("%d", pArrayNumero[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int PrintArrayInt(int* pArrayEdades, int limite)
+{
+	int ret=-1;
+	if(pArrayEdades!=NULL && limite>0)
+	{
+		for(int i=0;i<limite;i++)
+		{
+			printf("Indice: %d - Valor: %d\n", i, pArrayEdades[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}

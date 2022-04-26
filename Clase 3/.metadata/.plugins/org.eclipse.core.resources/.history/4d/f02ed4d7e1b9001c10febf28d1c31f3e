@@ -1,0 +1,16 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 2:
+Lograr hacer una funcion que me permita continuar o no... Devolver 1 o 0-
+Hacer una calculadora.. Operaciones por separado y todas las operaciones juntas, cuantas veces el usuario quiera.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+
+	return EXIT_SUCCESS;
+}

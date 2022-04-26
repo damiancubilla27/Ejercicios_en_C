@@ -1,0 +1,250 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 4:
+Hacer un programa en donde el usuario ingrese un array de 5 numeros enteros,
+luego generar un menu en donde el usuario pueda elegir entre las siguientes funciones:
+    a)Buscar el MAXIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	b)Buscar el MINIMO y mostrarlo (mostrar la cantidad de ocurrencias)
+	c)Calcular el PROMEDIO y mostrarlo
+ 	d)Ingresar un numero y mostrar si se encontro, cuantas veces y las posiciones del array
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int IngresarArrayInt(int* pArrayNumero, int tam);
+int UtnGetNumeroEntero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos);
+int BuscarMaximo(int * pArrayNumero, int tam, int* max, int* ocurren);
+int BuscarMinimo(int * pArrayNumero, int tam, int* max, int* ocurren);
+int CalcularPromedioArray(int *pArrayNumero, int tam, float *prom);
+int BuscarNumeroEnArray(int *pArrayNumero, int tam, char *mensaje, int *numero, int *ocurren);
+int PrintArrayInt(int* pArrayEdades, int limite);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numero[TAM];
+	int opcion;
+	int maximo;
+	int ocurrenciaMaximo;
+	int minimo;
+	int ocurrenciaMinimo;
+	float promedio;
+	int numeroIngresado;
+	int ocurrenciaNumeroIng;
+
+	IngresarArrayInt(numero, TAM);
+
+	do
+	{
+		UtnGetNumeroEntero(&opcion, "1.Buscar el maximo y mostralo\n2.Buscar el minimo y mostrarlo\n3.Calcular promedio y mostrarlo\n4.Ingresar un numero y mostrar si se encontro, cuantas veces y las posiciones del array\n5.Salir\nIngrese opcion: ", "Error en el ingreso de datos..\n", 1, 5, 1);
+		switch(opcion)
+		{
+		case 1:
+			if(BuscarMaximo(numero, TAM, &maximo, &ocurrenciaMaximo)==0)
+			{
+				printf("a.El numero maximo es %d - ocurrencias %d\n", maximo, ocurrenciaMaximo);
+			}
+			else
+			{
+				printf("Algo salio mal!\n");
+			}
+			break;
+		case 2:
+			if(BuscarMinimo(numero, TAM, &minimo, &ocurrenciaMinimo)==0)
+			{
+				printf("b.El numero minimo es %d - ocurrencias %d\n", minimo, ocurrenciaMinimo);
+			}
+			else
+			{
+				printf("Algo salio mal!\n");
+			}
+			break;
+		case 3:
+			if(CalcularPromedioArray(numero, TAM, &promedio)==0)
+			{
+				printf("c.El promedio de los numeros es %.2f\n", promedio);
+			}
+			else
+			{
+				printf("Algo salio mal!\n");
+			}
+			break;
+		case 4:
+			if(BuscarNumeroEnArray(numero, TAM, "Ingrese un numero: ", &numeroIngresado, &ocurrenciaNumeroIng)==0)
+			{
+				printf("d.El numero ingresado es: %d - ocurrencias %d\n", numeroIngresado, ocurrenciaNumeroIng);
+			}
+			else
+			{
+				printf("Algo salio mal!\n");
+			}
+			break;
+		}
+
+	}while(opcion!=5);
+
+	return EXIT_SUCCESS;
+}
+
+int IngresarArrayInt(int* pArrayNumero, int tam)
+{
+	int ret=-1;
+	if(pArrayNumero!=NULL && tam>0)
+	{
+		for(int i=0; i<tam;i++)
+		{
+			printf("Ingrese numero: ");
+			scanf("%d", &pArrayNumero[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int UtnGetNumeroEntero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos)
+{
+	int retorno=-1;
+	int bufferInt;
+	if(resultado!=NULL && mensaje != NULL && mensajeError != NULL && minimo<=maximo && reintentos >=0)
+	{
+		do{
+			printf("%s", mensaje);
+			scanf("%d", &bufferInt);
+			if(bufferInt>=minimo && bufferInt<=maximo)
+			{
+				*resultado=bufferInt;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				reintentos--;
+			}
+		}while(reintentos>=0);
+
+	}
+
+	return retorno;
+}
+
+int BuscarMaximo(int * pArrayNumero, int tam, int* max, int* ocurren)
+{
+	int ret=-1;
+	int bufferInt;
+	int ocu;
+	ocu=0;
+	if(pArrayNumero!=NULL && tam>0 && max!=NULL && ocurren!=NULL)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			if(i==0||bufferInt<pArrayNumero[i])
+			{
+				bufferInt=pArrayNumero[i];
+			}
+		}
+		for(int j=0;j<tam;j++)
+		{
+			if(bufferInt==pArrayNumero[j])
+			{
+				ocu++;
+			}
+		}
+		ret=0;
+		*max=bufferInt;
+		*ocurren=ocu;
+	}
+	return ret;
+}
+
+int BuscarMinimo(int * pArrayNumero, int tam, int* max, int* ocurren)
+{
+	int ret=-1;
+		int bufferInt;
+		int ocu;
+		ocu=0;
+		if(pArrayNumero!=NULL && tam>0 && max!=NULL && ocurren!=NULL)
+		{
+			for(int i=0;i<tam;i++)
+			{
+				if(i==0||bufferInt>pArrayNumero[i])
+				{
+					bufferInt=pArrayNumero[i];
+				}
+			}
+			for(int j=0;j<tam;j++)
+			{
+				if(bufferInt==pArrayNumero[j])
+				{
+					ocu++;
+				}
+			}
+			ret=0;
+			*max=bufferInt;
+			*ocurren=ocu;
+		}
+		return ret;
+}
+
+int CalcularPromedioArray(int *pArrayNumero, int tam, float *prom)
+{
+	int ret=-1;
+	int acumulador;
+	float bufferF;
+	acumulador=0;
+	if(pArrayNumero!=NULL && tam>0)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			acumulador+=pArrayNumero[i];
+		}
+		bufferF=(float)acumulador/tam;
+		*prom=bufferF;
+		ret=0;
+	}
+	return ret;
+}
+
+int BuscarNumeroEnArray(int *pArrayNumero, int tam, char *mensaje, int *numero, int *ocurren)
+{
+	int ret=-1;
+	int bufferInt;
+	int num;
+	int ocu;
+	ocu=0;
+	if(pArrayNumero!=NULL && tam>0 && mensaje!=NULL)
+	{
+		printf("%s", mensaje);
+		scanf("%d", &bufferInt);
+		for(int i=0;i<tam;i++)
+		{
+			if(bufferInt==pArrayNumero[i])
+			{
+				num=pArrayNumero[i];
+				ocu++;
+			}
+		}
+		ret=0;
+		*numero=num;
+		*ocurren=ocu;
+	}
+
+	return ret;
+}
+
+int PrintArrayInt(int* pArrayEdades, int limite)
+{
+	int ret=-1;
+	if(pArrayEdades!=NULL && limite>0)
+	{
+		for(int i=0;i<limite;i++)
+		{
+			printf("Indice: %d - Valor: %d\n", i, pArrayEdades[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}

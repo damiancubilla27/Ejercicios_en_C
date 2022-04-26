@@ -1,0 +1,62 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 5:
+Hacer un programa que el usuario ingrese un array de 10 caracteres y mostrarlo con PRINTF(%C)
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+
+int IngresoCaracteresArray(char *pArrayCaracter, int tam, char *mensaje);
+int MostrarCaracteresArray(char *pArrayCaracter, int tam);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	char caracter[TAM];
+
+	if(IngresoCaracteresArray(caracter, TAM, "Ingrese un caracter: ")==0)
+	{
+		MostrarCaracteresArray(caracter, TAM);
+	}
+	else
+	{
+		printf("Salio mal!");
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int IngresoCaracteresArray(char *pArrayCaracter, int tam, char *mensaje)
+{
+	int ret=-1;
+	if(pArrayCaracter!=NULL && tam>0)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			printf("%s", mensaje);
+			fflush(stdin);
+			scanf("%c", &pArrayCaracter[i]);
+		}
+		ret=0;
+	}
+
+	return ret;
+}
+
+int MostrarCaracteresArray(char *pArrayCaracter, int tam)
+{
+	int ret=-1;
+	if(pArrayCaracter!=NULL && tam>0)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			printf("%c - ", pArrayCaracter[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+

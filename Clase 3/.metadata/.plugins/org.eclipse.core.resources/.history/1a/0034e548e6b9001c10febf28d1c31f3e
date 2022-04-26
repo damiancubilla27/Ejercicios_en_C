@@ -1,0 +1,99 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 2:
+Lograr hacer una funcion que me permita continuar o no... Devolver 1 o 0-
+Hacer una calculadora.. Operaciones por separado y todas las operaciones juntas, cuantas veces el usuario quiera.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void PedirDatos(int* primerNumero, int* segundoNumero, int* op);
+void SumarNumeros(int primerNumero, int segundoNumero, int* regreso);
+void RestarNumeros(int primerNumero, int segundoNumero, int* regreso);
+void MultiplicarNumeros(int primerNumero, int segundoNumero, int* regreso);
+void DividirNumeros(int primerNumero, int segundoNumero, int* regreso);
+//void ElegirOpcion(int operacion, int primerNumero, int segundoNumero);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numUno;
+	int numDos;
+	int operacion;
+	int enteros;
+
+	PedirDatos(&numUno, &numDos, &operacion);
+
+	do{
+		switch(operacion)
+		{
+			case 1:
+				SumarNumeros(numUno, numDos, &enteros);
+				printf("%d", enteros);
+				break;
+			case 2:
+				RestarNumeros(numUno, numDos, &enteros);
+				printf("%d", enteros);
+				break;
+			case 3:
+				MultiplicarNumeros(numUno, numDos, &enteros);
+				printf("%d", enteros);
+				break;
+			case 4:
+				DividirNumeros(numUno, numDos, &enteros);
+				printf("%d", enteros);
+				break;
+			case 5:
+				printf("ESTA");
+				break;
+		}
+		printf("Desea continuar: SI=1 NO=0 : ");
+		scanf("%d", &operacion);
+	}while(operacion==0);
+
+	return EXIT_SUCCESS;
+}
+
+void PedirDatos(int* primerNumero, int* segundoNumero, int* op)
+{
+	int num1;
+	int num2;
+	int opcion;
+
+	printf("Ingrese un numero: ");
+	scanf("%d", &num1);
+	*primerNumero=num1;
+	printf("Ingrese otro numero: ");
+	scanf("%d", &num2);
+	*segundoNumero=num2;
+	printf("\n1.SUMA\n2.RESTA\n3.MULTIPLICACION\n4.DIVISION\n5.TODAS LAS OPERACIONES MATEMATICAS\nIngrese alguna opcion: ");
+	scanf("%d", &opcion);
+	*op=opcion;
+}
+
+void SumarNumeros(int primerNumero, int segundoNumero, int* regreso)
+{
+	int suma;
+	suma=primerNumero+segundoNumero;
+	*regreso=suma;
+}
+void RestarNumeros(int primerNumero, int segundoNumero, int* regreso)
+{
+	int resta;
+	resta=primerNumero-segundoNumero;
+	*regreso=resta;
+}
+void MultiplicarNumeros(int primerNumero, int segundoNumero, int* regreso)
+{
+	int multi;
+	multi=primerNumero*segundoNumero;
+	*regreso=multi;
+}
+void DividirNumeros(int primerNumero, int segundoNumero, int* regreso)
+{
+	int dividir;
+	dividir=primerNumero/segundoNumero;
+	*regreso=dividir;
+}

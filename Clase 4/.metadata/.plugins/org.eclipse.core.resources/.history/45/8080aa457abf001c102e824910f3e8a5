@@ -1,0 +1,62 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 4:
+Realizar un programa que permita el ingreso de 10 números enteros. Determinar el promedio de los positivos,
+la cantidad de ceros y del menor de los negativos la suma de los antecesores de ese valor (frenar en cero).
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+
+void CalcularMinMax(int *num, char *mensaje, int tam, int *prom, int *canti, int *nega);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numeros[TAM];
+
+
+
+	return EXIT_SUCCESS;
+}
+
+void CalcularMinMax(int *num, char *mensaje, int tam, int *prom, int *canti, int *nega)
+{
+	int numeropositivo;
+	int positivosAcu;
+	int positivosConta;
+	int contaCeros;
+	int numeroNega;
+	int promedioMax;
+	int cantidadCero;
+	int mayorNegativo;
+	numeropositivo=0;
+	positivosAcu=0;
+	positivosConta=0;
+	contaCeros=0;
+	numeroNega=0;
+	for(int i=0;i<tam;i++)
+	{
+		printf("Ingrese numero: ");
+		scanf("%d", &num[i]);
+		if(num[i]>numeropositivo)
+		{
+			positivosAcu=positivosAcu+num[i];
+			positivosConta++;
+		}
+
+		if(num[i]==0)
+		{
+			contaCeros++;
+		}
+
+		if(num[i]<numeroNega)
+		{
+			numeroNega=num[i];
+		}
+	}
+
+}

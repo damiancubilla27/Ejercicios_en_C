@@ -1,0 +1,68 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejerciio 3:
+1.Crear una funcion que imprima un array.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 9
+
+int PrintArrayInt(int* pArrayEdades, int tam);
+int OrdenarArrayInt(int* pArrayEdades, int tam);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int edades[TAM] = {54,26,93,17,77,31,44,55,27};
+
+	PrintArrayInt(edades, TAM);
+
+	return EXIT_SUCCESS;
+}
+
+
+int PrintArrayInt(int* pArrayEdades, int tam)
+{
+	int ret=-1;
+	if(pArrayEdades!=NULL && tam>0)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			printf("Indice: %d - Valor: %d\n", i, pArrayEdades[i]);
+		}
+		ret=0;
+	}
+	return ret;
+}
+
+int OrdenarArrayInt(int* pArrayEdades, int tam)
+{
+	int ret=-1;
+	int flagSwap;
+	int bufferInt;
+	int nuevoLimite;
+
+	if(pArrayEdades!=NULL && tam>0)
+	{
+		nuevoLimite=tam-1;
+		do
+		{
+			flagSwap=0;
+			for(int i=0;i<nuevoLimite;i++)
+			{
+				if(pArrayEdades[i]<pArrayEdades[i+1])
+				{
+					flagSwap=1;
+					bufferInt=pArrayEdades[i];
+					pArrayEdades[i]=pArrayEdades[i+1];
+					pArrayEdades[i+1]=bufferInt;
+				}
+			}
+			nuevoLimite--;
+		}while(flagSwap==1);
+		ret=0;
+	}
+	return ret;
+}

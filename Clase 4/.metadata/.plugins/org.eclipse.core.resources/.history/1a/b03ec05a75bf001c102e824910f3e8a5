@@ -1,0 +1,17 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 3:
+Crear una función que reciba como parámetro un número entero. La función retorna 1 en caso de que sea positivo,
+-1 en caso de que sea negativo y 0 en caso de que sea 0. Realizar la prueba lógica de la función en el main.
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+	return EXIT_SUCCESS;
+}

@@ -1,0 +1,57 @@
+/*
+ ============================================================================
+Cubilla Damian:
+Ejercicio 2:
+Crear una funcion que calcule el promedio de los valores del array que recibe y
+calcule el promedio.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 5
+
+int SacarPromedio(int arrayNumeros[], int tam, float *pProm);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numeros[TAM];
+	float promedio;
+
+	for(int i=0;i<TAM;i++)
+	{
+			printf("Ingrese numero: ");
+			scanf("%d", &numeros[i]);
+	}
+
+	if(SacarPromedio(numeros, TAM, &promedio)==0)
+	{
+		printf("El promedio de los numero es %.1f", promedio);
+	}
+	else
+	{
+		printf("Esto salio mal!!");
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int SacarPromedio(int arrayNumeros[], int tam, float *pProm)
+{
+	int ret=-1;
+	float bufferF;
+	int acumulador;
+	acumulador=0;
+	if(arrayNumeros!=NULL && tam!=0 && pProm!=NULL)
+	{
+		for(int i=0;i<tam;i++)
+		{
+			acumulador=acumulador+arrayNumeros[i];
+		}
+		ret=0;
+	}
+
+	bufferF=(float)acumulador/tam;
+	*pProm=bufferF;
+	return ret;
+}

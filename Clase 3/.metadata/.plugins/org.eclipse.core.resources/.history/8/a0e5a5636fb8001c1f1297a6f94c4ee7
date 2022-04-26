@@ -1,0 +1,104 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 1:
+Un programa que pida al usuario un numero, despues que pida una operacion (- * + /)
+y despues que pida otro numero. Segun la operacion seleccionada, se llamara a una funcion
+que ejecute la operacion (restar(), multiplicar(), sumar(), dividir())
+y luego mostrar al usuario el resultado.
+El mostrar resultado NOOO puede estar dentro de las funciones que crean para hacer la operacion.
+En la funcion dividir, no dividir por cero.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int SumarEnteros(int numeroUno, int numeroDos);
+int RestarEnteros(int numeroUno, int numeroDos);
+int MultiplicarEnteros(int numeroUno, int numeroDos);
+float DividirEnteros(int numeroUno, int numeroDos);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numUno;
+	int operacion;
+	int numDos;
+	int enteros;
+	float flotante;
+
+	printf("Ingrese un numero: ");
+	scanf("%d", &numUno);
+	printf("Ingresar la operacion( 1.Sumar / 2.Restar / 3.Multiplicar / 4.Dividir ): ");
+	scanf("%d", &operacion);
+	printf("Ingrese otro numero: ");
+	scanf("%d", &numDos);
+
+	switch(operacion)
+	{
+		case 1:
+			enteros=SumarEnteros(numUno, numDos);
+			printf("El resultado de la suma es: %d", enteros);
+			break;
+		case 2:
+			enteros=RestarEnteros(numUno, numDos);
+			printf("El resultado de la resta es: %d", enteros);
+			break;
+		case 3:
+			enteros=MultiplicarEnteros(numUno, numDos);
+			printf("El resultado de la multiplicacion es: %d", enteros);
+			break;
+		case 4:
+			flotante=DividirEnteros(numUno, numDos);
+			if(flotante==-1)
+			{
+				printf("No se puede hacer esta operacion!!");
+			}
+			else
+			{
+				printf("El resultado de la division es: %.1f", flotante);
+			}
+			break;
+		default:
+			printf("No seleciono ninguna operacion!!");
+			break;
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int SumarEnteros(int numeroUno, int numeroDos)
+{
+	int retorno;
+	retorno=numeroUno+numeroDos;
+	return retorno;
+}
+
+int RestarEnteros(int numeroUno, int numeroDos)
+{
+	int retorno;
+	retorno=numeroUno-numeroDos;
+	return retorno;
+}
+
+int MultiplicarEnteros(int numeroUno, int numeroDos)
+{
+	int retorno;
+	retorno=numeroUno*numeroDos;
+	return retorno;
+}
+
+float DividirEnteros(int numeroUno, int numeroDos)
+{
+	float retorno;
+	if(numeroDos==0)
+	{
+		retorno=-1;
+	}
+	else
+	{
+		retorno=(float)numeroUno/numeroDos;
+	}
+
+	return retorno;
+}

@@ -1,0 +1,70 @@
+/*
+ ============================================================================
+Cubilla Damian
+Ejercicio 1:
+Crear una función que reciba como parámetro dos números enteros, que realice el promedio de los números y
+que retorne dicho valor.
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int CalcularPromedio(int *num1, int *num2, char *mensajeError, int min, int max, int rein, float *promedio);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int numUno;
+	int numDos;
+	float promedio;
+
+
+	CalcularPromedio(&numUno, &numDos, "Ocurrio un error",0, 10, 3, &promedio);
+	if(CalcularPromedio(&numUno, &numDos, "Ocurrio un error",0, 10, 3, &promedio)==0)
+	{
+		printf("El promedio es: %.2f", promedio);
+	}
+	else
+	{
+		printf("ERROR!");
+	}
+	return EXIT_SUCCESS;
+}
+
+int CalcularPromedio(int *num1, int *num2, char *mensajeError, int min, int max, int rein, float *promedio)
+{
+	int retorno=-1;
+	int numeroUno;
+	int numeroDos;
+	int suma;
+	float bufferF;
+
+	if(mensajeError!=NULL && min<max && rein>=0)
+	{
+		do
+		{
+			printf("Ingrese un numero: ");
+			scanf("%d", &numeroUno);
+			printf("Ingrese otro numero: ");
+			scanf("%d", &numeroDos);
+			suma = numeroUno+numeroDos;
+			bufferF=(float)suma/2;
+			if(bufferF>=min && bufferF<=max)
+			{
+
+				*promedio=bufferF;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				rein--;
+			}
+
+		}while(rein>=0);
+	}
+
+	return retorno;
+}

@@ -1,0 +1,53 @@
+/*
+ ============================================================================
+ Name        : Ejercicio3_3.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int UtnGetNumero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos);
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int edad;
+	int vuelta;
+	vuelta=UtnGetNumero(&edad, "Ingrese edad: ", "Error, reingrese edad: ", 0, 100, 3);
+	if(vuelta==0)
+	{
+		printf("Se logro el codigo");
+	}
+	else
+	{
+		printf("No devuelve nada!!!");
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int UtnGetNumero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos)
+{
+	int retorno=-1;
+	int bufferInt;
+	if(resultado!=NULL && mensaje != NULL && mensajeError != NULL && minimo<=maximo && reintentos >=0)
+	{
+		printf("%s", mensaje);
+		scanf("%d", &bufferInt);
+		if(bufferInt>=minimo && bufferInt<=maximo)
+		{
+			*resultado=bufferInt;
+			retorno=0;
+		}
+		else
+		{
+			printf("%s", mensajeError);
+		}
+	}
+
+	return retorno;
+}

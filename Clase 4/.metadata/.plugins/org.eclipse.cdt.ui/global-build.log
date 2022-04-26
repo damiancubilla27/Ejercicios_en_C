@@ -1,0 +1,11 @@
+21:47:25 **** Incremental Build of configuration Debug for project Ejercicio4_4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Ejercicio4_4.o" "..\\src\\Ejercicio4_4.c" 
+gcc -o Ejercicio4_4.exe "src\\Ejercicio4_4.o" 
+Info: Nothing to build for Ejercicio4_4
+21:49:22 **** Incremental Build of configuration Debug for project Ejercicio4_4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Ejercicio4_4.o" "..\\src\\Ejercicio4_4.c" 
+gcc -o Ejercicio4_4.exe "src\\Ejercicio4_4.o" 
+Info: Nothing to build for Ejercicio4_4
+Info: Nothing to build for Ejercicio4_4
